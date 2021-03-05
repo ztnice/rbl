@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.site.rbl.mapper.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.cc.site.rbl.entity.UserInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="password" jdbcType="INTEGER" property="password"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="dept_id" jdbcType="VARCHAR" property="deptId"/>
+        <result column="enable" jdbcType="INTEGER" property="enable"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+        <result column="update_time	" jdbcType="VARCHAR" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id, name, account, password, email,
+		deptId,
+		enable,createTime,updateTime
+	</sql>
+
+    <!-- 获取任务总数-->
+    <select id="getJobCount" resultType="java.lang.Integer">
+        select count(id) count from user_info
+    </select>
+
+    <insert id="insert" parameterType="com.cc.site.rbl.entity.UserInfo">
+        insert into user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            enable,
+            create_time,
+            update_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="account != null">
+                #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                #{deptId,jdbcType=VARCHAR},
+            </if>
+             1,now(),now()
+        </trim>
+    </insert>
+
+    <!-- 更新定时任务信息 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.cc.site.rbl.entity.UserInfo">
+        update user_info set name = 'admin'
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询全部 -->
+    <select id="listAll" resultMap="BaseResultMap">
+		select  * from  user_info
+	</select>
+
+
+</mapper>
