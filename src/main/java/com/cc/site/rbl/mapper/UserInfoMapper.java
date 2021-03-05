@@ -17,4 +17,6 @@ public interface UserInfoMapper {
     int update (UserInfo userInfo);
 
     List<UserInfo> listAll();
+
+    UserInfo findById(Integer Id);
 }

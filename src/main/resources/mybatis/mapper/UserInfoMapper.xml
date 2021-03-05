@@ -23,7 +23,7 @@
         select count(id) count from user_info
     </select>
 
-    <insert id="insert" parameterType="com.cc.site.rbl.entity.UserInfo">
+    <insert id="insert" parameterType="com.cc.site.rbl.entity.UserInfo" useGeneratedKeys="true" keyProperty="id" >
         insert into user_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -72,7 +72,7 @@
     </insert>
 
     <!-- 更新定时任务信息 -->
-    <update id="updateByPrimaryKeySelective" parameterType="com.cc.site.rbl.entity.UserInfo">
+    <update id="update" parameterType="com.cc.site.rbl.entity.UserInfo">
         update user_info set name = 'admin'
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -81,6 +81,10 @@
     <select id="listAll" resultMap="BaseResultMap">
 		select  * from  user_info
 	</select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select  * from  user_info where id = #{id,jdbcType=INTEGER}
+    </select>
 
 
 </mapper>
