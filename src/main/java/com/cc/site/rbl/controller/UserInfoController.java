@@ -3,7 +3,6 @@ package com.cc.site.rbl.controller;
 import com.alibaba.fastjson.JSON;
 import com.cc.site.rbl.entity.UserInfo;
 import com.cc.site.rbl.service.UserInfoService;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +61,7 @@ public class UserInfoController {
         UserInfo sysJob = new UserInfo();
         sysJob.setAccount("22313");
         sysJob.setEnable(1);
-        sysJob.setEmail("23333");
+        sysJob.setEmail("2332312333");
         sysJob.setId(id);
         int result = userInfoService.update(sysJob);
         System.out.println(result);

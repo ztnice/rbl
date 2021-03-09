@@ -1,11 +1,13 @@
 package com.cc.site.rbl;
 
+import com.xpand.starter.canal.annotation.EnableCanalClient;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.cc.site.rbl.mapper")
+@EnableCanalClient
 public class RblApplication {
 
     public static void main(String[] args) {

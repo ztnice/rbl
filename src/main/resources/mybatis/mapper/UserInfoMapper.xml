@@ -10,12 +10,12 @@
         <result column="dept_id" jdbcType="VARCHAR" property="deptId"/>
         <result column="enable" jdbcType="INTEGER" property="enable"/>
         <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
-        <result column="update_time	" jdbcType="VARCHAR" property="updateTime"/>
+        <result column="update_time" jdbcType="VARCHAR" property="updateTime"/>
     </resultMap>
     <sql id="Base_Column_List">
 		id, name, account, password, email,
-		deptId,
-		enable,createTime,updateTime
+		dept_id,
+		enable,create_time,update_time
 	</sql>
 
     <!-- 获取任务总数-->
