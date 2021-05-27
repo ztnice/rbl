@@ -11,11 +11,11 @@ import java.util.Map;
  * @author haozt
  * @since 2021/3/9
  */
-@Component
-@RabbitListener(queues = "topic.messages")
+//@Component
+//@RabbitListener(queues = "topic.messages")
 public class TopicReceiver1 {
 
-    @RabbitHandler
+//    @RabbitHandler
     public void receiver(Map<String,Object> message){
         System.err.println("TopicReceiver1接收到了："+message);
     }

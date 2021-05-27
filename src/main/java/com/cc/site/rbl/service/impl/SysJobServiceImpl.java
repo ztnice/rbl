@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author haozt
@@ -26,6 +28,7 @@ public class SysJobServiceImpl implements SysJobService {
     @Override
     public int insert(SysJob sysJob) {
         logger.info("插入数据");
+
         return jobMapper.insertSelective(sysJob);
     }
 

@@ -1,7 +1,6 @@
 package com.cc.site.rbl.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.cc.site.rbl.entity.UserInfo;
 import com.cc.site.rbl.redis.util.JedisUtil;
 import com.cc.site.rbl.service.UserRedisService;

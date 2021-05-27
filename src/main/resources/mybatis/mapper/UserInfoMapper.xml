@@ -71,10 +71,15 @@
         </trim>
     </insert>
 
-    <!-- 更新定时任务信息 -->
+    <!-- 更新 -->
     <update id="update" parameterType="com.cc.site.rbl.entity.UserInfo">
         update user_info set name = 'admin'
         where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- delete -->
+    <update id="delete" parameterType="com.cc.site.rbl.entity.UserInfo">
+        delete user_info  where id = #{id,jdbcType=INTEGER}
     </update>
 
     <!-- 查询全部 -->

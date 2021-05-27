@@ -3,6 +3,7 @@ package com.cc.site.rbl.mapper;
 import com.cc.site.rbl.entity.UserInfo;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -15,6 +16,8 @@ public interface UserInfoMapper {
     int insert(UserInfo userInfo);
 
     int update (UserInfo userInfo);
+
+    int delete(Integer id);
 
     List<UserInfo> listAll();
 

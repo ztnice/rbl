@@ -12,7 +12,10 @@ public interface UserInfoService {
 
     int insert(UserInfo userInfo);
     int update(UserInfo userInfo);
+    int delete(Integer id);
     List<UserInfo> listAllUser();
+
+    List<UserInfo> listAllUser(String key);
 
     UserInfo getUser(Integer id);
 }

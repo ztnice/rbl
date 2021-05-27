@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Configuration;
  * @since 2021/3/9
  */
 
-@Configuration
+//@Configuration
 public class TopicRabbitConfig {
 
 
    private static final String message = "topic.message";
-   private static final String messages = "topic.messages";
+   private static final String messages = "topic.user";
 
 
    @Bean
