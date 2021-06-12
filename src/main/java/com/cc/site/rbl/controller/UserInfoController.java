@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,32 +46,26 @@ public class UserInfoController {
 
     @PostMapping("/insert")
     public void insert(){
-
         new Thread(this::insertUser).start();
-
-        new Thread(()->{
-            for(int i = 0 ; i < 50000; i++){
-                amqpTemplate.convertAndSend("exchange","topic.user",user());
-            }
-        }).start();
-
-        new Thread(()->{
-            for(int i = 0 ; i < 5000; i++){
-                insertUser();
-            }
-        }).start();
-
-        new Thread(()->{
-            for(int i = 0 ; i < 50000; i++){
-                amqpTemplate.convertAndSend("topic",user());
-            }
-        }).start();
-
-
-
     }
 
 
+    @PostMapping("/insert/list/{size}")
+    public void insertBatch(@PathVariable(value = "size") Integer size){
+        if(size == null){
+            logger.error("参数错误，不执行操作");
+            return;
+        }
+
+        List<UserInfo> userInfos = new ArrayList<>();
+        while (size > 0) {
+            userInfos.add(user());
+            size--;
+        }
+
+        userInfoService.insertList(userInfos);
+
+    }
 
     private void insertUser(){
         UserInfo sysJob = new UserInfo();

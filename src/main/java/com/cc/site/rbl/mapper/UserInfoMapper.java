@@ -15,6 +15,8 @@ public interface UserInfoMapper {
 
     int insert(UserInfo userInfo);
 
+    int insertList(List<UserInfo> list);
+
     int update (UserInfo userInfo);
 
     int delete(Integer id);

@@ -18,10 +18,30 @@
 		enable,create_time,update_time
 	</sql>
 
+
+    <sql id="INSERT_COLUMN">
+		name, account, password, email,
+		dept_id,
+		enable,create_time,update_time
+	</sql>
     <!-- 获取任务总数-->
     <select id="getJobCount" resultType="java.lang.Integer">
         select count(id) count from user_info
     </select>
+
+
+
+    <insert id="insertList" parameterType="java.util.ArrayList">
+        INSERT INTO user_info(<include refid="INSERT_COLUMN"></include>)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.name},#{item.account},#{item.password},#{item.email},#{item.deptId},#{item.enable},
+            now(),now()
+            
+            )
+        </foreach>
+    </insert>
 
     <insert id="insert" parameterType="com.cc.site.rbl.entity.UserInfo" useGeneratedKeys="true" keyProperty="id" >
         insert into user_info

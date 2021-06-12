@@ -3,6 +3,7 @@ package com.cc.site.rbl.service.impl;
 import com.cc.site.rbl.entity.UserInfo;
 import com.cc.site.rbl.mapper.UserInfoMapper;
 import com.cc.site.rbl.service.UserInfoService;
+import com.cc.site.rbl.util.ListUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author haozt
@@ -44,6 +48,19 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public int delete(Integer id) {
         return userInfoMapper.delete(id);
+    }
+
+    @Override
+    public void insertList(List<UserInfo> userInfos) {
+
+        logger.info("批量数据插入开始");
+        Executor executor = Executors.newFixedThreadPool(10);
+        List<List<UserInfo>> infos = ListUtil.splitList(userInfos);
+        for(List<UserInfo> infoList : infos){
+            ((ExecutorService) executor).submit(() -> userInfoMapper.insertList(infoList));
+        }
+        logger.info("批量数据插入结束(异步)");
+        ((ExecutorService) executor).shutdown();
     }
 
     @Override

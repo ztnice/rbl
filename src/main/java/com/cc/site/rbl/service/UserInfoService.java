@@ -13,6 +13,8 @@ public interface UserInfoService {
     int insert(UserInfo userInfo);
     int update(UserInfo userInfo);
     int delete(Integer id);
+
+    void insertList(List<UserInfo> userInfos);
     List<UserInfo> listAllUser();
 
     List<UserInfo> listAllUser(String key);
